@@ -60,3 +60,12 @@ code {
   font-weight: bold;
 }
 
+select {
+  display: block
+}
+
+.search {
+  display:flex;
+  align-items: center;
+}
+

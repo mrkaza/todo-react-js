@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import TodoItem from './components/TodoItem';
 import {useSelector} from 'react-redux';
 import TodoForm from './components/TodoForm';
@@ -10,7 +10,29 @@ const Todo = () => {
     useFirestoreConnect([
         {collection:'todos', where: [['userId', '==', authId]]}
     ])
-    const todos = useSelector((state)=> state.firestore.ordered.todos);
+    let todos = useSelector((state)=> state.firestore.ordered.todos);
+
+    const order = useSelector(state=> state.todo.sortBy)
+
+    if (todos) {
+        if(order) {
+            if(order === 'created.asc') {
+                todos =todos.slice().sort((a,b) => parseFloat(a.createdAt.seconds)- parseFloat(b.createdAt.seconds));
+            } else if (order === 'created.desc') {
+                todos = todos.slice().sort((a, b) => parseFloat(b.createdAt.seconds) - parseFloat(a.createdAt.seconds));
+            } else if(order === 'completed') {
+                todos = todos.filter(todo=> {
+                    return todo.completed === true
+                })
+            } else if (order === 'not-completed') {
+                todos = todos.filter(todo => {
+                    return todo.completed === false
+                })
+            }
+        }
+        console.log(todos)
+    }
+
     return (
         <div className="container">
             <div className="row">

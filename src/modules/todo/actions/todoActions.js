@@ -38,3 +38,10 @@ export const completedTodo = (id) => {
         })
     }
 }
+
+export const orderBy = (orderBy) => {
+    return {
+        type: 'ORDER_BY',
+        orderBy
+    }
+}
