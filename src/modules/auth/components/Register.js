@@ -5,8 +5,6 @@ import {register} from '../actions/authActions';
 const Register = () => {
     const [email,setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
     const dispatch = useDispatch();
 
     const errorMessage = useSelector(state => state.auth.errorMessage);
@@ -16,8 +14,6 @@ const Register = () => {
         const newUser = {
             email: email,
             password: password,
-            name: name,
-            surname: surname
         }
         dispatch(register(newUser))
     }
@@ -34,19 +30,12 @@ const Register = () => {
                         <input id="password" type="password" onChange={(e) => setPassword(e.target.value)} />
                         <label htmlFor="password">Password</label>
                     </div>
-                    <div className="input-field col s12">
-                        <input id="name" type="text" onChange={(e) => setName(e.target.value)} />
-                        <label htmlFor="name">Name</label>
+                    <div className="btn-middle col s12">
+                        <button className="btn waves-effect waves-light" type="submit" name="action">Register
+                        </button>
                     </div>
-                    <div className="input-field col s12">
-                        <input id="surname" type="text" onChange={(e) => setSurname(e.target.value)} />
-                        <label htmlFor="surname">Last Name</label>
-                    </div>
-                    <button className="btn waves-effect waves-light" type="submit" name="action">Register
-                    </button>
                 </form>
                 <p className=" col s12 red-text text-darken-1 error-message">{errorMessage}</p>
-
             </div>
         </div>
     )

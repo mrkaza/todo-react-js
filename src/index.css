@@ -66,6 +66,14 @@ select {
 
 .search {
   display:flex;
-  align-items: center;
+  align-items: flex-end;
 }
 
+.btn-middle {
+  display:flex;
+  justify-content: center;
+}
+
+.or {
+  text-align: center;
+}

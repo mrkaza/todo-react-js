@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux';
 import {orderBy} from '../actions/todoActions';
 
 const Filter = () => {
-    const [search, setSearch] = useState('');
+    // const [search, setSearch] = useState('');
     const [order, setOrder] = useState('');
     const dispatch = useDispatch();
 
@@ -39,7 +39,7 @@ const Filter = () => {
                         <option value="not-completed">Not completed</option>
                     </select>
                 </form>
-                <button onClick={filter} className="btn-small col s2 btn ">Filter</button>
+                <button onClick={filter} className="z-depth-0 grey lighten-3 black-text btn-small col s2 btn ">Filter</button>
             </div>
         </div>
     )

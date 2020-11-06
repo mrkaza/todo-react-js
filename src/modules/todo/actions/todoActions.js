@@ -1,8 +1,8 @@
-export const addTodo = (title, description) => {
-    return (dispatch, getState, {getFirebase, getFirestore}) => {
-        //make call to firebase
+import {firestore} from '../../../consts/fbConfig';
 
-        const firestore = getFirestore();
+export const addTodo = (title, description) => {
+    return (dispatch, getState) => {
+        //make call to firebase
         const id = getState().firebase.auth.uid
         firestore.collection('todos').add({
             title: title,
@@ -20,8 +20,7 @@ export const addTodo = (title, description) => {
 }
 
 export const deleteTodo = (id) => {
-    return (dispatch, getState, {getFirestore}) => {
-        const firestore = getFirestore();
+    return (dispatch) => {
         firestore.collection('todos').doc(id).delete().then(() => {
             dispatch({type: 'DELETE_TODO'})
         })
@@ -29,8 +28,8 @@ export const deleteTodo = (id) => {
 }
 
 export const completedTodo = (id) => {
-    return (dispatch, getState, {getFirestore}) => {
-        const firestore = getFirestore();
+    return (dispatch) => {
+
         return firestore.collection('todos').doc(id).update({
             completed: true
         }).then(() => {

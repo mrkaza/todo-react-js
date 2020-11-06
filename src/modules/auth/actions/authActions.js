@@ -1,7 +1,9 @@
+import {firebaseAuth} from '../../../consts/fbConfig';
+import firebase from 'firebase/app'
+
 export const login = (credentials) => {
-    return (dispatch, getState, {getFirebase}) => {
-        const firebase = getFirebase();
-        firebase.auth().signInWithEmailAndPassword(
+    return (dispatch) => {
+        firebaseAuth.signInWithEmailAndPassword(
             credentials.email,
             credentials.password
         ).then(() => {
@@ -13,20 +15,17 @@ export const login = (credentials) => {
 }
 
 export const signOut = () => {
-    return (dispatch, getState, { getFirebase}) => {
-        const firebase = getFirebase();
+    return (dispatch) => {
 
-        firebase.auth().signOut().then(() => {
+        firebaseAuth.signOut().then(() => {
             dispatch({type: 'SIGNOUT_SUCCESS'})
         });
     }
 }
 
 export const register = (newUser) => {
-    return (dispatch,getState, {getFirebase}) => {
-        const firebase =getFirebase();
-
-        firebase.auth().createUserWithEmailAndPassword(
+    return (dispatch) => {
+        firebaseAuth.createUserWithEmailAndPassword(
             newUser.email,
             newUser.password
         ).then(() => {
@@ -39,12 +38,10 @@ export const register = (newUser) => {
 
 
 export const facebook = () => {
-    return (dispatch, getState, {getFirebase}) => {
-        const firebase = getFirebase();
-        const provider = new firebase.auth.FacebookAuthProvider();
-        
+    return (dispatch) => {
 
-        firebase.auth().signInWithPopup(provider).then(() => {
+        const provider = new firebase.auth.FacebookAuthProvider();
+        firebaseAuth.signInWithPopup(provider).then(() => {
             dispatch({type:'FACEBOOK_LOGIN'})
         })
     }

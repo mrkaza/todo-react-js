@@ -1,13 +1,15 @@
 import React from 'react';
-import Todo from '../modules/todo/Index';
+import Login from '../modules/auth/index';
 import {useSelector} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
-const Index = () => {
+const SignIn = () => {
     const auth = useSelector(state=> state.firebase.auth);
 
-    if(!auth.uid) return <Redirect to="/login" />
-    return (<Todo/>)
+    if(auth.uid) return <Redirect to="/" />
+    return (
+        <Login />
+    )
 }
 
-export default Index;
+export default SignIn

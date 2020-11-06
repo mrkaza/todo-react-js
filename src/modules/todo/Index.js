@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import TodoItem from './components/TodoItem';
 import {useSelector} from 'react-redux';
 import TodoForm from './components/TodoForm';
@@ -30,7 +30,6 @@ const Todo = () => {
                 })
             }
         }
-        console.log(todos)
     }
 
     return (

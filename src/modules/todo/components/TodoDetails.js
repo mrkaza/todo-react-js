@@ -2,6 +2,7 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {useFirestoreConnect} from 'react-redux-firebase'
 import moment from 'moment'
+import {Redirect} from 'react-router-dom'
 
 const TodoDetails = (props) => {
 
@@ -12,6 +13,10 @@ const TodoDetails = (props) => {
     }])
     const todos = useSelector(state => state.firestore.data.todos);
     const todo = todos[id]
+
+    const auth = useSelector(state=> state.firebase.auth);
+
+    if(!auth.uid) return <Redirect to="/login" />
     return (
         <div className="container">
            <div className="row">

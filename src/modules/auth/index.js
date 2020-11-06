@@ -33,14 +33,16 @@ const Login = () => {
                         <input value={password} id="password" type="password" onChange={(e) => setPassword(e.target.value)} />
                         <label htmlFor="password">Password</label>
                     </div>
-                    <button className="btn waves-effect waves-light" type="submit" name="action">Login
-                    </button>
+                    <div className="btn-middle col s12">
+                        <button className="btn waves-effect waves-light" type="submit" name="action">Login
+                        </button>
+                    </div>
                 </form>
                 <p className=" col s12 red-text text-darken-1 error-message">{errorMessage}</p>
             </div>
-            <p>or</p>
+            <p className="or">or</p>
             <div className="row">
-                <div className="col s12 facebook">
+                <div className="col s12 btn-middle">
                     <Facebook />
                 </div>
             </div>
